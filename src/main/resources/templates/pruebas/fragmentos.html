@@ -71,5 +71,37 @@
                 </div>
             </div>
         </section>
+        <!-- 3 Sección para crear los filtros -->
+        <section th:fragmento="filtros" class="bg-light">
+            <div clase="fila py-2">
+                <div clase="col-md-1"></div>
+                <div clase="col-md-3">
+                    <form method="POST" th:action="@{/pruebas/query1}"
+                          class="fue-validado">
+                        <div clase="tarjeta">                            
+                            <div class="cuerpo-de-tarjeta">
+                                <clase div="mb-3">
+                                    <label for="precioInf">[[#{pruebas.precio.inferior}]]</label>
+                                    <input type="number" class="form-control"
+                                           th:valor="${precioInf}"
+                                           th:nombre="precioInf" requerido="verdadero"/>
+                                </div>
+                                <clase div="mb-3">
+                                    <label for="precioSup">[[#{pruebas.precio.superior}]]</label>
+                                    <input type="number" class="form-control"
+                                           th:valor="${precioSup}"
+                                           th:nombre="precioSup" requerido="true"/>
+                                </div>
+                            </div>
+                            <div class="centro-texto-pie-de-tarjeta">
+                                <button type="enviar" class="btn btn-primary">
+                                    <i class="fas fa-check"></i> [[#{pruebas.ampliadas}]]
+                                </botón>
+                            </div>
+                        </div>
+                    </formulario>
+                </div>   
+            </div>
+        </section>
 </body>
 </html>

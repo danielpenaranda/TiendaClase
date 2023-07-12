@@ -7,7 +7,7 @@ import java.util.List;
  */
 public interface CategoriaService {
     //SE OBTIENE UN LISTADO DE CATEGORIAS DE UN LIST
-    public List<Categoria> getCategoria(boolean activo);
+    public List<Categoria> getCategorias(boolean activos);
 
     public List<Categoria> getCategoria(Categoria categoria);
     

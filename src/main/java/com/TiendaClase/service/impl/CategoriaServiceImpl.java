@@ -16,7 +16,7 @@ public class CategoriaServiceImpl implements CategoriaService {
     
     @Override
     @Transactional (readOnly=true)
-    public List<Categoria> getCategoria(boolean activos) {
+    public List<Categoria> getCategorias(boolean activos) {
         var lista = categoriaDao.findAll();
         if(activos){
             lista.removeIf(e -> !e.isActivo() );

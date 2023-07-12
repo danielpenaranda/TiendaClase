@@ -20,7 +20,7 @@ public class ProductoController {
 
     @GetMapping("/listado")
     public String inicio(Model model) {
-        var productos = productoService.getProducto(false);
+        var productos = productoService.getProductos(false);
         model.addAttribute("productos", productos);
         model.addAttribute("totalProductos", productos.size());
         return "/producto/listado";
