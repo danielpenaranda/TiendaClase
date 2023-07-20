@@ -1,12 +1,22 @@
-package com.tienda;
+package com.tiendaClase;
 
 import java.util.Locale;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
@@ -47,18 +57,18 @@ public class ProjectConfig implements WebMvcConfigurer {
         return messageSource;
     }
     /* Los siguientes métodos son para implementar el tema de seguridad dentro del proyecto */
-    @Anular
-    public void addViewControllers(ViewControllerRegistry registro) {
-        registro.addViewController("/").setViewName("index");
-        registro.addViewController("/index").setViewName("index");
-        registro.addViewController("/iniciar sesión").setViewName("iniciar sesión");
-        registro.addViewController("/registro/nuevo").setViewName("/registro/nuevo");
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("index");
+        registry.addViewController("/index").setViewName("index");
+        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/registro/nuevo").setViewName("/registro/nuevo");
  }
 
-@Frijol
-    Public SecurityFilterChain securityFilterChain (HttpSecurity http) arroja una excepción {
+@Bean
+    public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((solicitud) -> solicitud
+                .authorizeHttpRequests((request) -> request
                 .requestMatchers("/","/index","/errores/**",
                         "/carrito/**","/pruebas/**","/reportes/**",
                         "/registro/**","/js/**","/webjars/**")
@@ -70,41 +80,54 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/categoria/modificar/**","/categoria/eliminar/**",
                         "/usuario/nuevo","/usuario/guardar",
                         "/usuario/modificar/**","/usuario/eliminar/**",
-                        "/informes/**"
-                ).hasRole("ADMINISTRADOR")
+                        "/reportes/**"
+                ).hasRole("ADMIN")
                 .requestMatchers(
                         "/producto/listado",
                         "/categoria/listado",
                         "/usuario/listado"
-                ).hasAnyRole("ADMINISTRADOR", "PROVEEDOR")
+                ).hasAnyRole("ADMIN", "PROVEEDOR")
                 .requestMatchers("/facturar/carrito")
-                .hasRole("USUARIO")
+                .hasRole("USER")
                 )
-                .formLogin((formulario) -> formulario
+                .formLogin((form) -> form
                 .loginPage("/login").permitAll())
-                .logout((cerrar sesión) -> cerrar sesión.permitAll());
-        volver http.construir();
+                .logout((logout) -> logout.permitAll());
+        return http.build();
     }
 
 /* El siguiente metodo se utiliza para completar la clase no es
     realmente funcional, la próxima semana se reemplazará con los usuarios de BD */    
-    @Frijol
-    Usuarios públicos de UserDetailsService () {
-        UserDetails admin = Usuario.constructor()
-                .nombre de usuario("juan")
-                .contraseña("{noop}123")
+    @Bean
+    public UserDetailsService users() {
+        UserDetails admin = User.builder()
+                .username ("juan")
+                .password("{noop}123")
                 .roles("USUARIO", "PROVEEDOR", "ADMINISTRADOR")
-                .construir();
-        Ventas UserDetails = User.builder()
-                .nombre de usuario("rebeca")
-                .contraseña("{noop}456")
+                .build();
+        UserDetails sales = User.builder()
+                .username ("rebeca")
+                .password("{noop}456")
                 .roles("USUARIO", "PROVEEDOR")
-                .construir();
-        UserDetails usuario = Usuario.constructor()
-                .nombre de usuario("pedro")
-                .contraseña("{noop}789")
+                .build();
+        UserDetails user = User.builder()
+                .username("pedro")
+                .password("{noop}789")
                 .roles("USUARIO")
-                .construir();
-        devolver nuevo InMemoryUserDetailsManager (usuario, ventas, administrador);
+                .build();
+        return new InMemoryUserDetailsManager (user, sales, admin);
+    }
+     @Autowired
+
+    private UserDetailsService userDetailsService;
+
+
+
+    @Autowired
+
+    public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
+
+        build.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+
     }
 }

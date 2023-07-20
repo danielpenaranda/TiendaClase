@@ -28,8 +28,8 @@ public class ProductoServiceImpl implements ProductoService{
     
     @Override
     @Transactional(readOnly = true)
-    public Producto getProducto(Producto producto) {
-        return productoDao.findById(producto.getIdProducto()).orElse(null);
+    public List<Producto> getProducto(Producto producto) {
+        return (List<Producto>) productoDao.findById(producto.getIdProducto()).orElse(null);
     }
 
     @Override
