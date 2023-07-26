@@ -45,6 +45,11 @@
                                 <li class="nav-item px-2"><a class="nav-link" th:href="@{/(lang-es)}">ES</a></li>
                                 <li class="nav-item px-2"><a class="nav-link" th:href="@{/(lang-en)}">EN</a></li>
                             </ul>
+                             <ul class="navbar-nav" sec:authorize="isAuthenticated()">
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/login}"><i class="fas fa-sign-in-alt"></i></a>
+                                </li>
+                            </ul>
                             <ul class="navbar-nav" sec:authorize="isAuthenticated()">
                                 <li class="nav-item text-white my-auto">
                                     <i class="fas fa-users"></i>

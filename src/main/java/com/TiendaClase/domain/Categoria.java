@@ -30,8 +30,8 @@ public class Categoria implements Serializable {
         this.activo = activo;
     }
     
-   // @OneToMany
-    //@JoinColumn(name="id_categoria")
-    //List<Producto> productos;
+   /* @OneToMany
+    @JoinColumn(name="id_categoria")
+    List<Producto> productos;*/
      
 }

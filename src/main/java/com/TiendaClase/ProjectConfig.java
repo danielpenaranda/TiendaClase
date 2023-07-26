@@ -126,7 +126,6 @@ public class ProjectConfig implements WebMvcConfigurer {
     @Autowired
 
     public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
-
         build.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
 
     }
