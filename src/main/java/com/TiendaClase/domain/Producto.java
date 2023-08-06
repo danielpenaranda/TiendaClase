@@ -3,11 +3,12 @@ package com.TiendaClase.domain;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import lombok.Data;
-
+import com.TiendaClase.domain.Categoria;
 @Data​
 @Entity​
-//@Table(name="producto")​
-public class Producto implements Serializable{
+@Table(name="producto")
+
+    public class Producto implements Serializable{
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -22,9 +23,9 @@ public class Producto implements Serializable{
     private String rutaImagen;
     private boolean activo;
     
-    //@ManyToOne      
-   // @JoinColumn(name="id_categoria")
-    //Categoria categoria;
+    @ManyToOne      
+    @JoinColumn(name="id_categoria")
+    Categoria categoria;
 
     public Producto() {
     }

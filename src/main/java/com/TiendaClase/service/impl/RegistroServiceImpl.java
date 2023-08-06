@@ -8,6 +8,7 @@ import com.TiendaClase.domain.Usuario;
 import com.TiendaClase.service.CorreoService;
 import com.TiendaClase.service.RegistroService;
 import com.TiendaClase.service.UsuarioService;
+import com.tiendaClase.service.impl.FirebaseStorageServiceImpl;
 import jakarta.mail.MessagingException;
 import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;

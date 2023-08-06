@@ -1,7 +1,7 @@
 package com.TiendaClase.service;
 
 import com.TiendaClase.domain.Producto;
-import com.tiendaClase.domain.Categoria;
+//import com.TiendaClase.domain.Categoria;
 import java.util.List;
 
 /**

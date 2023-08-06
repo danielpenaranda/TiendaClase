@@ -1,5 +1,5 @@
 package com.TiendaClase.service;
-import com.tiendaClase.domain.Categoria;
+import com.TiendaClase.domain.Categoria;
 import java.util.List;
 /**
  *

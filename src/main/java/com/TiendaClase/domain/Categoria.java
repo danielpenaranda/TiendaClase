@@ -1,14 +1,18 @@
-package com.tiendaClase.domain;
+package com.TiendaClase.domain;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import lombok.Data;
 
+/**
+ *
+ * @author HUAWEI PC
+ */
 @Data
 @Entity
 @Table(name="categoria")
-public class Categoria implements Serializable {
+public class Categoria implements Serializable{
     
     private static final long serialVersionUID = 1L;
     
@@ -30,8 +34,11 @@ public class Categoria implements Serializable {
         this.activo = activo;
     }
     
-   /* @OneToMany
+    @OneToMany
     @JoinColumn(name="id_categoria")
-    List<Producto> productos;*/
+    List<Producto> productos;
      
+
 }
+    
+

@@ -1,8 +1,8 @@
 package com.TiendaClase.controller;
 
+import com.TiendaClase.domain.Categoria;
 import com.TiendaClase.service.CategoriaService;
 import com.TiendaClase.service.ProductoService;
-import com.tiendaClase.domain.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

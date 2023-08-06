@@ -1,12 +1,13 @@
 package com.tiendaClase.service.impl;
 
 import com.TiendaClase.dao.CategoriaDao;
+import com.TiendaClase.domain.Categoria;
 import com.TiendaClase.service.CategoriaService;
-import com.tiendaClase.domain.Categoria;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
 public class CategoriaServiceImpl implements CategoriaService {
