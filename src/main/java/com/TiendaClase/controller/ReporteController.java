@@ -78,7 +78,7 @@ public class ReporteController {
     public ResponseEntity<Resource> reporteFacturas(
     @RequestParam String nombre_usuario,
                     @RequestParam String tipo) throws IOException{
-        //  PARA DEFINIR PARAMETROS QUE PASAN AL REPORTE CLIENTE
+        //  PARA DEFINIR PARAMETROS QUE PASAN AL REPORTE FACTURAS
         Map<String, Object> parametros= new HashMap();
         parametros.put("nombre_usuario", nombre_usuario);
         var reporte="facturas";
